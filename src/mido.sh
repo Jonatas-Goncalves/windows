@@ -204,6 +204,9 @@ download_windows_eval() {
     "win2025-eval" )
       enterprise_type="server"
       windows_version="windows-server-2025" ;;
+    "win2022c-eval" )
+      enterprise_type="server"
+      windows_version="windows-server-2022" ;;
     "win2022-eval" )
       enterprise_type="server"
       windows_version="windows-server-2022" ;;
@@ -332,7 +335,7 @@ getWindows() {
     "win11${PLATFORM,,}-enterprise"* | "win10${PLATFORM,,}-enterprise"* )
       download_windows_eval "$version" "$lang" "$edition" && return 0
       ;;
-    "win2025-eval" | "win2022-eval" | "win2019-eval" | "win2016-eval" | "win2012r2-eval" )
+    "win2025-eval" | "win2022c-eval" |"win2022-eval" | "win2019-eval" | "win2016-eval" | "win2012r2-eval" )
       download_windows_eval "$version" "$lang" "$edition" && return 0
       ;;
     "win81${PLATFORM,,}-enterprise-eval" )
