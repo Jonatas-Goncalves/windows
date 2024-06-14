@@ -4,7 +4,7 @@ set -Eeuo pipefail
 : "${BOOT_MODE:="windows"}"
 
 APP="Windows"
-SUPPORT="https://github.com/dockur/windows"
+SUPPORT="https://github.com/Jonatas-Goncalves/windows"
 
 cd /run
 
@@ -22,6 +22,9 @@ cd /run
 . config.sh     # Configure arguments
 
 trap - ERR
+
+powershell -Command "dism /online /enable-feature /featurename:NetFx3 /all"
+powershell -Command "Add-WindowsCapability -Online -Name ServerCore.AppCompatibility~~~~0.0.1.0"
 
 version=$(qemu-system-x86_64 --version | head -n 1 | cut -d '(' -f 1 | awk '{ print $NF }')
 info "Booting ${APP}${BOOT_DESC} using QEMU v$version..."
