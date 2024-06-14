@@ -78,6 +78,9 @@ parseVersion() {
     "22" | "2022" | "win22" | "win2022" | "windows2022" | "windows 2022" )
       VERSION="win2022-eval"
       ;;
+    "win2022c" | "win2022c-eval" )
+      VERSION="win2022c"
+      ;;
     "19" | "2019" | "win19" | "win2019" | "windows2019" | "windows 2019" )
       VERSION="win2019-eval"
       ;;
@@ -381,6 +384,7 @@ printVersion() {
     "win2016"* ) desc="Windows Server 2016" ;;
     "win2019"* ) desc="Windows Server 2019" ;;
     "win2022"* ) desc="Windows Server 2022" ;;
+    "win2022c"* ) desc="Windows Server 2022 Core" ;;
     "win2025"* ) desc="Windows Server 2025" ;;
   esac
 
@@ -443,6 +447,9 @@ printEdition() {
     "win2025"* | "win2022"* | "win2019"* | "win2016"* )
       edition="Standard"
       ;;
+    "core"* ) 
+      edition="Core Edition"
+      ;;
     "win2012"* | "win2008"* | "win2003"* )
       edition="Standard"
       ;;
@@ -504,6 +511,9 @@ fromFile() {
     *"server2025"* | *"server_2025"* )
       id="win2025"
       ;;
+    *"server2022c"* | *"server_2022c"* )
+      id="win2022c"
+      ;;  
     *"server2022"* | *"server_2022"* )
       id="win2022"
       ;;
@@ -540,6 +550,7 @@ fromName() {
 
   case "${name,,}" in
     *"server 2025"* ) id="win2025" ;;
+    *"server 2022 core"* ) id="win2022c" ;;
     *"server 2022"* ) id="win2022" ;;
     *"server 2019"* ) id="win2019" ;;
     *"server 2016"* ) id="win2016" ;;
@@ -589,7 +600,12 @@ getVersion() {
           *" enterprise"* ) id="$id-enterprise" ;;
         esac
       ;;
-    "win2025"* | "win2022"* | "win2019"* | "win2016"* | "win2012"* | "win2008"* )
+    "win2022c"* )
+       case "${name,,}" in
+          *" evaluation"* ) id="$id-eval" ;;
+        esac
+      ;;
+    "win2025"* | "win2022c"* |"win2022"* | "win2019"* | "win2016"* | "win2012"* | "win2008"* )
        case "${name,,}" in
           *" evaluation"* ) id="$id-eval" ;;
         esac
@@ -675,6 +691,10 @@ getMido() {
     "win2025-eval" )
       size=5307996160
       sum="16442d1c0509bcbb25b715b1b322a15fb3ab724a42da0f384b9406ca1c124ed4"
+      ;;
+    "win2022c-eval" )
+      size=5044094976
+      sum="3e4fa6d8507b554856fc9ca6079cc402df11a8b79344871669f0251535255325"
       ;;
     "win2022-eval" )
       size=5044094976
@@ -763,6 +783,11 @@ getLink1() {
       size=5307176960
       sum="2293897341febdcea599f5412300b470b5288c6fd2b89666a7b27d283e8d3cf3"
       url="server/2025/en-us_windows_server_2025_preview_x64_dvd_ce9eb1a5.iso"
+      ;;
+    "win2022c" | "win2022c-eval" )
+      size=5365624832
+      sum=c3c57bb2cf723973a7dcfb1a21e97dfa035753a7f111e348ad918bb64b3114db
+      url="server/2022/en-us_windows_server_2022_updated_jan_2024_x64_dvd_2b7a0c9f.iso"
       ;;
     "win2022" | "win2022-eval" )
       size=5365624832
