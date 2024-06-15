@@ -23,9 +23,6 @@ cd /run
 
 trap - ERR
 
-powershell -Command "dism /online /enable-feature /featurename:NetFx3 /all"
-powershell -Command "Add-WindowsCapability -Online -Name ServerCore.AppCompatibility~~~~0.0.1.0"
-
 version=$(qemu-system-x86_64 --version | head -n 1 | cut -d '(' -f 1 | awk '{ print $NF }')
 info "Booting ${APP}${BOOT_DESC} using QEMU v$version..."
 
