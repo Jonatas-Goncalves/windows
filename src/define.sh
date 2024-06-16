@@ -444,11 +444,11 @@ printEdition() {
     "winvista"* )
       edition="Business"
       ;;
-    "win2025"* | win2022c"* | "win2022"* | "win2019"* | "win2016"* )
+    "win2025"* | "win2022"* | "win2019"* | "win2016"* )
       edition="Standard"
       ;;
     "win2022c"* ) 
-      edition="Core Edition"
+      edition="Standard"
       ;;
     "win2012"* | "win2008"* | "win2003"* )
       edition="Standard"
@@ -605,7 +605,7 @@ getVersion() {
           *" evaluation"* ) id="$id-eval" ;;
         esac
       ;;
-    "win2025"* | "win2022c"* |"win2022"* | "win2019"* | "win2016"* | "win2012"* | "win2008"* )
+    "win2025"* |"win2022"* | "win2019"* | "win2016"* | "win2012"* | "win2008"* )
        case "${name,,}" in
           *" evaluation"* ) id="$id-eval" ;;
         esac
@@ -631,6 +631,7 @@ switchEdition() {
       DETECTED="win81${PLATFORM,,}-enterprise"
       ;;
     "win2025-eval" ) DETECTED="win2025" ;;
+    "win2022c-eval" ) DETECTED="win2022c" ;;
     "win2022-eval" ) DETECTED="win2022" ;;
     "win2019-eval" ) DETECTED="win2019" ;;
     "win2016-eval" ) DETECTED="win2016" ;;
